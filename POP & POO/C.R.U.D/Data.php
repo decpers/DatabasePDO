@@ -6,7 +6,7 @@
 		private $strName;
 		private $strLastName;
 		private $strEmail;
-		private $NewConnection;
+		private $newConnection;
 
 		public function __construct(){
 
