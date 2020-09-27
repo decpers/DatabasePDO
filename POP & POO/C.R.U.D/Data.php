@@ -10,8 +10,8 @@
 
 		public function __construct(){
 
-			$this->NewConnection = new Connection();
-			$this->NewConnection = $this->NewConnection->getConnection();
+			$this->newConnection = new Connection();
+			$this->newConnection = $this->newConnection->getConnection();
 
 		}
 
@@ -22,7 +22,7 @@
 			$dataToInsert = array($this->strName, $this->strLastName, $this->strEmail);
 
 			$query= "INSERT INTO users(name,lastName,email) VALUES(?,?,?)";	
-			$prepareDataInsertion = $this->NewConnection->prepare($query);
+			$prepareDataInsertion = $this->newConnection->prepare($query);
 			$insertData = $prepareDataInsertion->execute($dataToInsert);
 			$responseObtained = $insertData;
 
@@ -37,14 +37,14 @@
 
 		public function getAllData() {
 			$query = "SELECT*FROM users;";
-			$realizeQuery = $this->NewConnection->query($query);
+			$realizeQuery = $this->newConnection->query($query);
 			$responseObtained = $realizeQuery->fetchall(PDO::FETCH_ASSOC);
 			return $responseObtained; 
 		}
 
 		public function getOneData(int $id){
 			$query = "SELECT*FROM users where id = $id;";
-			$realizeQuery = $this->NewConnection->query($query);
+			$realizeQuery = $this->newConnection->query($query);
 			$responseObtained = $realizeQuery->fetchall(PDO::FETCH_ASSOC);
 			return $responseObtained; 
 		}
@@ -55,7 +55,7 @@
 			$this->strEmail = $email;
 
 			$query= "UPDATE users SET name = ?, lastName = ?, email = ? where id = $id";	
-			$prepareDataUpdate = $this->NewConnection->prepare($query);
+			$prepareDataUpdate = $this->newConnection->prepare($query);
 			$newData = array($this->strName, $this->strLastName, $this->strEmail);
 			$updateThisData = $prepareDataUpdate->execute($newData);
 			$responseObtained = $updateThisData;
@@ -72,7 +72,7 @@
 		public function deleteData(int $id){
 			$idSelected = array($id);
 			$query = "DELETE FROM users where id = ?";
-			$prepareDeleting = $this->NewConnection->prepare($query);
+			$prepareDeleting = $this->newConnection->prepare($query);
 			$delete = $prepareDeleting->execute($idSelected);
 			$responseObtained = $delete;
 
@@ -90,7 +90,7 @@
 			$this->newId = $newId; 
 			
 			$query= "UPDATE users SET id = ? where id = $id";	
-			$prepareDataUpdate = $this->NewConnection->prepare($query);
+			$prepareDataUpdate = $this->newConnection->prepare($query);
 			$newData = array($this->newId);
 			$updateThisData = $prepareDataUpdate->execute($newData);
 			$responseObtained = $updateThisData;
