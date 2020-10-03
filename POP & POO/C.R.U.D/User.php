@@ -1,7 +1,7 @@
 <?php
 	require_once("autoload.php");
 
-	Class Data extends Connection{
+	Class User extends Connection{
 		
 		private $strName;
 		private $strLastName;
@@ -15,7 +15,7 @@
 
 		}
 
-		public function insertData(string $name, string $lastName, string $email){
+		public function insertUser(string $name, string $lastName, string $email){
 			$this->strName = $name;
 			$this->strLastName = $lastName; 
 			$this->strEmail = $email;
@@ -35,21 +35,21 @@
 			};		
 		}
 
-		public function getAllData() {
+		public function getAllUsers() {
 			$query = "SELECT*FROM users;";
 			$realizeQuery = $this->newConnection->query($query);
 			$responseObtained = $realizeQuery->fetchall(PDO::FETCH_ASSOC);
 			return $responseObtained; 
 		}
 
-		public function getOneData(int $id){
+		public function getOneUser(int $id){
 			$query = "SELECT*FROM users where id = $id;";
 			$realizeQuery = $this->newConnection->query($query);
 			$responseObtained = $realizeQuery->fetchall(PDO::FETCH_ASSOC);
 			return $responseObtained; 
 		}
 
-		public function updateData(int $id, string $name, string $lastName, string $email) {
+		public function updateUser(int $id, string $name, string $lastName, string $email) {
 			$this->strName = $name;
 			$this->strLastName = $lastName; 
 			$this->strEmail = $email;
@@ -69,7 +69,7 @@
 			};		
 		}
 
-		public function deleteData(int $id){
+		public function deleteUser(int $id){
 			$idSelected = array($id);
 			$query = "DELETE FROM users where id = ?";
 			$prepareDeleting = $this->newConnection->prepare($query);
@@ -85,10 +85,8 @@
 			};	
 		}
 
-		public function updateDataID(int $id, int $newId) {
-			
-			$this->newId = $newId; 
-			
+		public function updateUserID(int $id, int $newId) {		
+			$this->newId = $newId; 			
 			$query= "UPDATE users SET id = ? where id = $id";	
 			$prepareDataUpdate = $this->newConnection->prepare($query);
 			$newData = array($this->newId);

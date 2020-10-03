@@ -1,22 +1,25 @@
 <?php
 	require_once("autoload.php");
 
-	class organizeData extends Data {
+	/* Use only when delete a user */
+	
+	class Organizer extends User {
 
 		public function organize(){
-			$data = new Data();
-			$allData = $data->getAllData();
+			$data = new User();
+			$allData = $data->getAllUsers();
 			$enteredIds = count($allData);		
 			$lastRecord = $enteredIds - 1;
 			$LastID = $allData[$lastRecord]['id'];
 		
 			for($i = 1; $i <= $LastID; $i++){			
-				$contentData = $data->getOneData($i);
+				$contentData = $data->getOneUser($i);
 				//False means than is empty
 				if($contentData == false){
 					$newId = $i;
 					$OldId =$i+1;
-					$updateID = $data->updateDataID($OldId,$newId);	
+					$updateID = $data->updateUserID($OldId,$newId);	
+					header("Location: organizeUserData.php" );
 				}
 
 			};
@@ -24,7 +27,11 @@
 
 	};
 
-	$test = new organizeData();
+
+	$test = new Organizer();
 	$organizeTest = $test->organize();
+	echo $organizeTest;
+
+
 	
 ?>
