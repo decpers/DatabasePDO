@@ -1,7 +1,7 @@
 <?php
 	require_once("autoload.php");
 
-	/* Use only when delete a user */
+	/* Use only when delete an user */
 	
 	class Organizer extends User {
 
