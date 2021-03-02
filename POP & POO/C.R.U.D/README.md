@@ -10,7 +10,7 @@ Dentro del repositorio hay un archivo que enlaza todos los archivos con las clas
   
 `autoload.php`
 
-Por otro lado, debes cambiar los datos de conexión
+Por otro lado, debes cambiar los datos de conexión en el archivo Connection.php
 
 ```php
 private $hostServer = "localhost";
@@ -20,7 +20,16 @@ private $dataBase = "test";
 
 ```
 
-Recuerda que este CRUD solo es para usuario, por lo que debes cambiar los datos de la consulta SQL en el archivo Usuario.php
+Algo que debes tener presente es que este CRUD solo es para datos de usuario, por lo que si deseas usarlo debes cambiar los datos de la consulta SQL que está en el archivo Usuario.php
+
+```php
+$query= "INSERT INTO users(name,lastName,email) VALUES(?,?,?)";	
+```
+En ese bloque de código debes especificar el nombre de tu tabla y el nombre los campos de tu tabla usuario, aunque debo recordarte que solo son tres campos.
+
+`name`
+`lastName`
+`email`
 
 <h3>Tecnología usada</h3>
 
